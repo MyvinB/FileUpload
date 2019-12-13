@@ -5,7 +5,8 @@ import { ReactiveFormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { UploadService } from '../../upload.service';
 import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 import { FileUploader } from 'ng2-file-upload';
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
+
+const uri:string = "http://localhost:8081/api/";
 @Component({
   selector: 'app-upload-screen',
   templateUrl: './upload-screen.component.html',
@@ -15,74 +16,23 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 })
 export class UploadScreenComponent {
  
-  uploader:FileUploader;
-  hasBaseDropZoneOver:boolean;
-  hasAnotherDropZoneOver:boolean;
-  response:string;
- 
-
-  constructor(private httpClient: HttpClient,private uploadService:UploadService) { 
-    this.uploader = new FileUploader({
-      url: URL,
-      disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called.
-      formatDataFunctionIsAsync: true,
-      formatDataFunction: async (item) => {
-        return new Promise( (resolve, reject) => {
-          resolve({
-            name: item._file.name,
-            length: item._file.size,
-            contentType: item._file.type,
-            date: new Date()
-          });
-        });
-      }
-    });
- 
-    this.hasBaseDropZoneOver = false;
-    this.hasAnotherDropZoneOver = false;
- 
-    this.response = '';
- 
-    this.uploader.response.subscribe( res => this.response = res );
+  uploader:FileUploader = new FileUploader({url:uri,itemAlias: 'file'});
+  attachmentList:any = [];
+  
+  constructor() { 
+  //   this.uploader.onCompleteItem = (item:any, response:any , status:any, headers:any) => {
+  //     console.log(item);
+  //     this.attachmentList.push(JSON.parse(response));
+  // }
+  
   }
 
+  
+
 
 
  
-  submit() {
-    console.log(this.files)
-   for(let i=0;i<this.files.length;i++){
-    
-    this.uploadService.upload(this.files[i]).subscribe(
-      
 
-      event =>  {
-        switch (event.type) {
-        case HttpEventType.Sent:
-          console.log('Request has been made!');
-          break;
-        case HttpEventType.ResponseHeader:
-          console.log('Response header has been received!');
-          break;
-        case HttpEventType.UploadProgress:
-          this.progress = Math.round(event.loaded / event.total * 100);
-          console.log(`Uploaded! ${this.progress}%`);
-          break;
-        case HttpEventType.Response:
-          console.log('User successfully created!', event.body);
-          setTimeout(() => {
-            this.progress = 0;
-          }, 15000);
-
-      }
-     
-      });
-    
-   }
-    
-    
-    
-  }
 
 
 

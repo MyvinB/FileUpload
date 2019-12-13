@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { AuthenticationRouterModule } from './modules/authentication/authentication-router.module';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { UploadModule } from './modules/upload/upload.module';
-
+import {FileUploadModule} from 'ng2-file-upload';
 
 
 const appRoutes: Routes =[
@@ -26,7 +26,8 @@ const appRoutes: Routes =[
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     AuthenticationModule,
-    UploadModule
+    UploadModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]
