@@ -6,33 +6,13 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UploadService {
-  uploadServiceEndpoint:string = "http://localhost:8081/api/";
+  uploadServiceEndpoint:string = "http://localhost:8081/api/getallfiles";
   constructor(private http: HttpClient) { }
 
-  errorMgmt(error: HttpErrorResponse) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    console.log(errorMessage);
-    return throwError(errorMessage);
+  getallfiles():Observable<any>{
+    return this.http.get(this.uploadServiceEndpoint);
   }
-  
-  
-  upload(File):Observable<any> {
-    const formData = new FormData();
-    formData.append('file', File);
-    return this.http.post(this.uploadServiceEndpoint,formData,{
-      reportProgress: true,
-      observe: 'events',
-      responseType: 'text'
-    }).pipe(
-      catchError(this.errorMgmt)
-     ) }
+
 
 
     }

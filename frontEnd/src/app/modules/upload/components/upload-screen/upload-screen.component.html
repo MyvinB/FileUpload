@@ -19,6 +19,7 @@
                             <div class="col-sm-4">{{item.file.name}}</div>
                             <div class="col-sm-4">
                                 <div class="progress">
+                                   
                                     <div class="progress-bar bg-success" 
                                     [ngStyle]="{'width':item.progress+'%'}"></div>
                                 </div>
@@ -38,10 +39,11 @@
             <div class="row card">
                 <h4>Download Section</h4>
 
-                <div class="row" *ngFor="let item of attachmentList; let i = index"
+                <div class="row" *ngFor="let item of attachmentList | keyvalue"
                 style="margin:10px;padding:5px;background-color:rgb(231, 229, 229); border-radius:5px; line-height:40px;">
-                    <div class="col-sm-7">{{item.originalname}}</div>
-                    <div class="col-sm-5" style="text-align:center;"><button type="button" class="btn btn-primary" (click)="download(i)">Download</button></div>
+                    <div class="col-sm-7">{{item.key}}</div>
+                    
+                    <div class="col-sm-5" style="text-align:center;"><button type="button" class="btn btn-primary" (click)="onClick(item.value)">Download</button></div>
                 </div>
             </div>
         </div>

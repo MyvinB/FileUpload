@@ -81,6 +81,7 @@ public class FileSystemStorageService implements StorageService {
     public Stream<Path> loadAll(String userId) {
         try {
         createDirectory(userId);
+
             return Files.walk(this.rootUser, 1)
                     .filter(path -> !path.equals(this.rootUser))
                     .map(this.rootUser::relativize);
