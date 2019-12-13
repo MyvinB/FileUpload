@@ -1,0 +1,16 @@
+; If you miss selective download files - that's OK
+19ed4bb2bb098146ae334a61792452b2 *..\fg-01.bin
+291f8691db06813aefe5c55e1a6606b2 *..\fg-02.bin
+8ba57afada44f9d9738e0b3d93288251 *..\fg-03.bin
+2a0f6401690a2f0b4fc0d50a6d600fdf *..\fg-04.bin
+f9ff1a88c52c3267583cba76a7e041e2 *..\fg-selective-arabic.bin
+84b02ebbfb8f77766120e2ac85502d21 *..\fg-selective-brazilian.bin
+97f7a2b31336cf463c697b94bf7ebd55 *..\fg-selective-dutch.bin
+35c0a494060b5ac4af3df8f522039ab5 *..\fg-selective-english.bin
+297347b173f4728a305df1c6a4d319a4 *..\fg-selective-french.bin
+f5f41525950f37cbf385f0ce43a4d866 *..\fg-selective-german.bin
+b2809d8f1abcb8b580c1a35839a2e4a0 *..\fg-selective-italian.bin
+9e25ed2d982a04a328de5f5a0918857b *..\fg-selective-mexican.bin
+486099ef26b5e21e95759b10d8b3464d *..\fg-selective-polish.bin
+1e9ac6af4792993d863728fe3d8fb893 *..\fg-selective-russian.bin
+b406306af0e3e6a22e8b89b0482c88fd *..\fg-selective-spanish.bin

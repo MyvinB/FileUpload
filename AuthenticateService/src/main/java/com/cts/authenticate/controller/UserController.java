@@ -39,7 +39,7 @@ public class UserController {
 			userService.saveUser(user);
 			return new ResponseEntity<String>("User registered successfully", HttpStatus.CREATED);
 		} catch (Exception e) {
-			return new ResponseEntity<String>("{ \" message\": \"" + e.getMessage() + "\"}", HttpStatus.CONFLICT);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.CONFLICT);
 		}
 	}
 
@@ -54,7 +54,7 @@ public class UserController {
 			return new ResponseEntity<Map<String, String>>(map, HttpStatus.OK);
 
 		} catch (Exception e) {
-			return new ResponseEntity<String>("{ \" message\": \"" + e.getMessage() + "\"}", HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.UNAUTHORIZED);
 		}
 	}
 }
