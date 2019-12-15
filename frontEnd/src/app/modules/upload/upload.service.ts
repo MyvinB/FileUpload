@@ -6,13 +6,16 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class UploadService {
-  uploadServiceEndpoint:string = "http://localhost:8081/api/getallfiles";
+  uploadServiceEndpoint:string = "http://localhost:8081/api/";
   constructor(private http: HttpClient) { }
 
   getallfiles():Observable<any>{
-    return this.http.get(this.uploadServiceEndpoint);
+    return this.http.get(this.uploadServiceEndpoint+"getallfiles");
   }
 
+  deletefiles(name){
+    return this.http.delete(this.uploadServiceEndpoint+"delete/"+name,{responseType:"text"});
+  }
 
 
     }

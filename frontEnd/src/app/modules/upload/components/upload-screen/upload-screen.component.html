@@ -1,9 +1,22 @@
-  
-<div class="container-fluid">
-    <div class="row header-section">
-        <span>Angular 4/5 Nodejs File Upload Download Sample</span>
-    </div>
+<nav class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <span class="navbar-brand mb-0 h1" style="color: #FE2F03;">Welcome {{name}}</span>
 
+        </div>
+   
+       
+        
+            <button class="btn btn-outline-success" type="button" (click)="onLogout()">Logout</button>
+           
+        
+    </div>
+    
+  
+</nav>
+<div class="container-fluid">
+    
+  
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
@@ -40,10 +53,12 @@
                 <h4>Download Section</h4>
 
                 <div class="row" *ngFor="let item of attachmentList | keyvalue"
-                style="margin:10px;padding:5px;background-color:rgb(231, 229, 229); border-radius:5px; line-height:40px;">
-                    <div class="col-sm-7">{{item.key}}</div>
+                style="margin:10px;padding:15px;background-color:rgb(231, 229, 229); border-radius:5px; line-height:40px;">
+                    <div class="col-sm-9">{{item.key}}</div>
                     
-                    <div class="col-sm-5" style="text-align:center;"><button type="button" class="btn btn-primary" (click)="onClick(item.value)">Download</button></div>
+                    <div class="col-sm-0" style="text-align:center;"><button type="button" class="btn btn-primary" (click)="onClick(item.value)">Download</button></div>
+                    <div class="col-sm-1" style="text-align:center;"><button type="button" class="btn btn-primary" (click)="onDelete(item.key)">Delete</button></div>
+
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit{
   user:User;
   submit:boolean=false;
   errorMessage = '';
-
+  
  
   constructor(private formBuilder: FormBuilder,private authService :AuthenticationService,private router:Router) { }
   
@@ -36,12 +36,13 @@ export class LoginComponent implements OnInit{
       console.log(data);
       if(data['token']) {
         this.authService.setToken(data['token']);
-        
-        //this.router.navigate(['']); 
+        console.log(data)
+        this.router.navigate(['upload',this.loginForm.get("userId").value,'name']); 
       }
     },
     error=>{
       console.log(error);
+      this.errorMessage=error;
       alert(error.error)
     }
     );

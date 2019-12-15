@@ -38,7 +38,7 @@ public class DemoApplication {
 		return (args) -> {
 
 
-
+			//storageService.deleteFile("upload-dir/panda/Sweat Fest.mp4");
 			storageService.init();
 		};
 	}

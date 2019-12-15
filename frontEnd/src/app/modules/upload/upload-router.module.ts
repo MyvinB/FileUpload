@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes} from '@angular/router';
 import { UploadScreenComponent } from './components/upload-screen/upload-screen.component';
+import { LoginComponent } from '../authentication/components/login/login.component';
+
 const uploadRouter: Routes = [
   
   {
-    path: 'upload',
-    component: UploadScreenComponent
+    path: 'login',
+    component: LoginComponent,
   }
 ];
 

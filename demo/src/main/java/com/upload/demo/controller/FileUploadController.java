@@ -23,6 +23,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import sun.tools.jconsole.JConsole;
 
 
 @Controller
@@ -82,6 +83,17 @@ public class FileUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
 
     }
+
+    @DeleteMapping("/delete/{user}/{fileName}")
+    public ResponseEntity<?> deleteFile(@PathVariable String user,@PathVariable String fileName) {
+        Boolean check=storageService.deleteFile(user+"/"+fileName);
+        //System.out.println(user+" "+fileName);
+        //System.out.println(fileName);
+        System.out.println(check);
+        return new  ResponseEntity<>("check",HttpStatus.OK);
+
+    }
+
 
 
 

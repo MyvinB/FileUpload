@@ -11,9 +11,12 @@ import {FileUploadModule} from 'ng2-file-upload';
 const appRoutes: Routes =[
   {
     path: '',
-    redirectTo: '/upload',
-    pathMatch: 'full'
-  }
+    redirectTo: 'login',
+    pathMatch: 'full',
+   
+  },
+ {path: '**', redirectTo: 'login'}
+ 
 ]
 
 

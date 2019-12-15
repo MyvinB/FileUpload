@@ -9,6 +9,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -118,6 +119,14 @@ public class FileSystemStorageService implements StorageService {
             throw new StorageFileNotFoundException("Could not read file: " + filename, e);
         }
     }
+
+    @Override
+    public Boolean deleteFile(String filePath) {
+        Path fileToDelete=this.rootLocation.resolve(filePath);
+        File file = new File(fileToDelete.toString());
+        return file.delete();
+    }
+
     @Override
     public void init() {
         try {

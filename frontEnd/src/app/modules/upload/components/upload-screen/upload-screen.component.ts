@@ -6,6 +6,7 @@ import { UploadService } from '../../upload.service';
 import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
 import { FileUploader } from 'ng2-file-upload';
 import {AuthenticationService} from '../../../authentication/authentication.service'
+import { Params, ActivatedRoute, Router } from '@angular/router';
 
 const uri:string = "http://localhost:8081/api/";
 @Component({
@@ -15,8 +16,9 @@ const uri:string = "http://localhost:8081/api/";
  
  
 })
-export class UploadScreenComponent {
+export class UploadScreenComponent  {
  
+ name:String;
   uploader:FileUploader = new FileUploader({
     url: uri,
     authTokenHeader:  'authorization',
@@ -26,10 +28,22 @@ export class UploadScreenComponent {
   attachmentList = new Map<String, String>();
 
 
-  constructor(private auth:AuthenticationService,private uploadService:UploadService ) { 
+
+  constructor(private auth:AuthenticationService,private uploadService:UploadService,private activatedRoute: ActivatedRoute ,private router:Router) { 
     this.uploader.onBeforeUploadItem = (item) => {
       item.withCredentials = false;
     }
+    this.uploader.onCompleteItem = (item:any, response:any , status:any, headers:any) => {
+      this.uploadService.getallfiles().subscribe(
+        data=>{
+          console.log(data);
+          this.attachmentList=data;
+       
+        }
+      )
+    }
+    this.name = this.activatedRoute.snapshot.paramMap.get('name');
+    
     this.uploadService.getallfiles().subscribe(
       data=>{
         console.log(data);
@@ -38,13 +52,22 @@ export class UploadScreenComponent {
         //console.log(this.map)
       }
     )
-
- 
-  
   }
   onClick(url){
     
     window.location.href=url;
+  }
+  onLogout(){
+    console.log("checking logout")
+    this.auth.deleteToken();
+    this.router.navigate(['/login'])
+  }
+  onDelete(fileName){
+      fileName=this.name+"/"+fileName;
+      console.log(fileName)
+      this.uploadService.deletefiles(fileName).subscribe()
+      this.uploadService.getallfiles().subscribe(data=>{this.attachmentList=data;})
+
   }
 
   
